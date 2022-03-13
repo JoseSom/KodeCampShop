@@ -76,3 +76,13 @@ footer{
     font-size: 16px;
     color: var(--main-common-color-white);
 }
+
+.divider-vertical{
+    border-right: 2px solid var(--main-principal-color-gray);
+}
+
+.modal-user-title{
+    font-family: "Poppins-Bold";
+    font-size: xx-large;
+    color: var(--main-principal-color-gray);
+}
