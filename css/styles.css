@@ -83,6 +83,10 @@ footer{
     border-right: 2px solid var(--main-principal-color-gray);
 }
 
+#nav-shopping-cart{
+    cursor: pointer;
+}
+
 .modal-user-title{
     font-family: "Poppins-Bold";
     font-size: xx-large;
@@ -134,4 +138,16 @@ footer{
     cursor: pointer;
     box-shadow: 1px 1px 10px var(--main-common-color-black);
     transform: scale(1.1);
+}
+
+#shopping-cart-count{
+    background-color: var(--main-principal-color-cian);
+    font-size: small;
+    font-family: "Poppins-Bold";
+    color: var(--main-common-color-black);
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 100%;
+    float: right;
 }

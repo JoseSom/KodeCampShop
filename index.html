@@ -41,7 +41,7 @@
                         </li>
                         <li class="nav-item mx-3">
                             <a class="nav-link" aria-current="page" id="nav-shopping-cart"><i
-                                    class="fas fa-shopping-cart icons-menu"></i></a>
+                                    class="fas fa-shopping-cart icons-menu"></i><div id="shopping-cart-count"></div></a>
                         </li>
                         <li class="nav-item mx-3">
                             <a class="nav-link" aria-current="page" href="#" data-bs-toggle="modal"
@@ -95,14 +95,6 @@
                             <h3 class="section-subtitle my-5">Shirts</h3>
                         </div>
                         <div id="products-body-carts-shirts" class="row">
-                            <!-- <div class="card" style="width: 18rem;">
-                                <img src="/assets/img/shirt.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Web Shirt</h5>
-                                    <p class="card-text">Powerful development </p>
-                                    <a href="#" class="btn btn-primary">Add</a>
-                                </div>
-                            </div> -->
                         </div>
                     </section>
                     <section id="products-body-pants">
@@ -110,19 +102,6 @@
                             <h3 class="section-subtitle my-5">Pants</h3>
                         </div>
                         <div id="products-body-carts-pants" class="row">
-                            <!-- <div class="col-3">
-                                <div class="card " style="width: 18rem;">
-                                    <img src="/assets/img/pants.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Keyboard Pants</h5>
-                                        <p class="card-text">Powerful development </p>
-                                        <div class="d-grid gap-2">
-                                            <button class="btn btn-primary"> <i class="fas fa-cart-plus"></i> Add Cart</button>
-                                        </div>
-    
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </section>
                     <section id="products-body-sweater">
@@ -130,14 +109,6 @@
                             <h3 class="section-subtitle my-5">Sweater</h3>
                         </div>
                         <div id="products-body-carts-sweater" class="row">
-                            <!-- <div class="card" style="width: 18rem;">
-                                <img src="/assets/img/sweater.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Keyboard Pants</h5>
-                                    <p class="card-text">Powerful development </p>
-                                    <a href="#" class="btn btn-primary">Add</a>
-                                </div>
-                            </div> -->
                         </div>
                     </section>
                 </div>
@@ -157,9 +128,10 @@
             </div>
         </div>
         <div id="shopping-cart-body">
-            <div class="row">
+            <div class="row" id="items-shopping-card-display">
+
                 <div class="shopping-cart-item col-12 mx-3">
-                    <div class="row" class="cart-item">
+                    <div class="row cart-item">
                         <div id="cart-product-img-item" class="col-4 p-2">
                             <img src="/assets/img/pants.jpg" alt="">
                         </div>
@@ -172,7 +144,7 @@
                                     <p>Descripcion</p>
                                 </div>
                                 <div id="cart-product-price-title-item" class="col-8">
-                                    <p>Precio</p>
+                                    <p>Price</p>
                                 </div>
                                 <div id="cart-product-prices-number-item" class="col-4">
                                     <p>$4000.00</p>
@@ -181,6 +153,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         <div id="shopping-cart-footer" class="row my-3 mt-auto">

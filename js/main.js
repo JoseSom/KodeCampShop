@@ -1,4 +1,5 @@
 'use strict';
+let arrayShoppingCart
 
 window.onload = function () {
     initializeComponents()
@@ -6,6 +7,10 @@ window.onload = function () {
 }
 
 function initializeComponents() {
+    arrayShoppingCart = []
+
+    document.getElementById('shopping-cart-count').innerText = 0
+
     document.getElementById('nav-shopping-cart').addEventListener('click', () => {
         displayShoppinCart();
     });
@@ -16,11 +21,37 @@ function initializeComponents() {
 }
 
 function displayShoppinCart() {
+    let emptyProductCart = document.createElement("h1");
+    emptyProductCart.id = "message-empty-shopping-cart-body";
+    emptyProductCart.innerText = "Aun no has añadido productos"
+
     let shoppingCart = document.getElementById('aside-shopping-cart')
+    let shoppingCartContent = document.getElementById('shopping-cart-body')
+
     let percentReduceScrean = window.screen.height * .2
     let screen = window.screen.height - percentReduceScrean
+
     shoppingCart.style.setProperty('height', `${screen}px`)
     shoppingCart.style.setProperty('visibility', 'visible');
+
+
+    if (arrayShoppingCart.length != 0) {
+        let messageEmpty = document.getElementById('message-empty-shopping-cart-body')
+        if (messageEmpty) {
+            messageEmpty.style.setProperty('visibility', 'hidden');
+        }
+
+        document.getElementById('shopping-cart-body').innerHTML = ""
+
+        arrayShoppingCart.forEach(product =>
+            shoppingCartContent.appendChild(buildCardShoppinCart(product.title, product.description, product.imageUrl, product.price, product.category, product.productId))
+        );
+
+    } else {
+        if(!document.getElementById('message-empty-shopping-cart-body')){
+        shoppingCartContent.appendChild(emptyProductCart);
+        }
+    }
 }
 
 
@@ -91,11 +122,91 @@ const buildCardMain = (title, description, photoUrl, price, category, productId)
     };
 
     cardBtnAdd.addEventListener('click', () => {
-        console.log(product);
+        let counter = parseInt(document.getElementById('shopping-cart-count').textContent)
+        counter++
+        document.getElementById('shopping-cart-count').innerText = counter
+        addProductCart(product);
     });
 
     return cardCol;
 };
+
+const buildCardShoppinCart = (title, description, photoUrl, price, category, productId) => {
+
+    let cardCartItemContainer = document.createElement("div");
+    let cardCartItem = document.createElement("div");
+
+    let cardCartItemImg = document.createElement("div");
+    let cartItemImg = document.createElement("img");
+
+    let cardCartItemBody = document.createElement("div");
+    let cartItemBodyRow = document.createElement("div");
+
+    let cartItemBodyRowName = document.createElement("div");
+    let cartItemBodyName = document.createElement("p");
+
+    let cartItemBodyRowDescription = document.createElement("div");
+    let cartItemBodyDescription = document.createElement("p");
+
+    let cartItemBodyRowPrice = document.createElement("div");
+    let cartItemBodyPrice = document.createElement("p");
+
+    let cartItemBodyRowPriceNumber = document.createElement("div");
+    let cartItemBodyPriceNumber = document.createElement("p");
+
+
+
+    // Add classes to elements
+    cardCartItemContainer.classList.add("shopping-cart-item", "col-12", "mx-3");
+    cardCartItem.classList.add("row", "cart-item");
+    cardCartItemImg.classList.add("col-4", "p-2")
+    cardCartItemBody.classList.add("col-7", "p-2")
+    cartItemBodyRow.classList.add("row")
+    cartItemBodyRowName.classList.add("col-12")
+    cartItemBodyRowDescription.classList.add("col-12")
+    cartItemBodyRowPrice.classList.add("col-8")
+    cartItemBodyRowPriceNumber.classList.add("col-4")
+
+
+    //Add css
+    //cardContainer.style.setProperty('width', '15rem')
+
+
+    // Add values to the elements
+    cartItemImg.src = photoUrl;
+    cartItemBodyName.innerText = title;
+    cartItemBodyDescription.innerText = description;
+    cartItemBodyPrice.innerText = `Price:`;
+    cartItemBodyPriceNumber.innerText = `$ ${price}`
+
+    // Build structure
+    cardCartItemContainer.appendChild(cardCartItem);
+
+    cardCartItem.appendChild(cardCartItemImg);
+    cardCartItemImg.appendChild(cartItemImg);
+
+    cardCartItem.appendChild(cardCartItemBody);
+    cardCartItemBody.appendChild(cartItemBodyRow);
+
+    cartItemBodyRow.appendChild(cartItemBodyRowName);
+    cartItemBodyRowName.appendChild(cartItemBodyName);
+
+    cartItemBodyRow.appendChild(cartItemBodyRowDescription);
+    cartItemBodyRowDescription.appendChild(cartItemBodyDescription);
+
+    cartItemBodyRow.appendChild(cartItemBodyRowPrice);
+    cartItemBodyRowPrice.appendChild(cartItemBodyPrice);
+
+    cartItemBodyRow.appendChild(cartItemBodyRowPriceNumber);
+    cartItemBodyRowPriceNumber.appendChild(cartItemBodyPriceNumber);
+
+
+    return cardCartItemContainer;
+};
+
+function addProductCart(product) {
+    arrayShoppingCart.push(product)
+}
 
 const buildProduct = (title, description, photoUrl, price, category, productId) => {
     const objetcProduct = {
