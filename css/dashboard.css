@@ -51,3 +51,13 @@ footer{
     box-shadow: 1px 1px 10px var(--main-common-color-black);
     transform: scale(1.1);
 }
+
+#dashboard-edit-products-body{
+    visibility: visible;
+}
+
+#message-empty-products{
+    visibility: visible;
+    text-align: center;
+    font-size: xxx-large;
+}

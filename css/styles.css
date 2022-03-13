@@ -124,3 +124,14 @@ footer{
     font-size: xx-large;
     font-family: "Poppins-Bold";
 }
+
+.card{
+    border: 1px solid var(--main-principal-color-gray);
+    transition: all .2s ease-in-out;
+}
+
+.card:hover{
+    cursor: pointer;
+    box-shadow: 1px 1px 10px var(--main-common-color-black);
+    transform: scale(1.1);
+}
