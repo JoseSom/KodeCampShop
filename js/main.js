@@ -1,4 +1,3 @@
-'use strict';
 document.cookie = `sessionLoginWorker=${false}`
 let isValidUser = false
 let pruebaVariable = 0
@@ -330,6 +329,7 @@ const getAllProductsByCategory = () => {
 /** CRUD USUARIOS */
 let formSingupContent = document.getElementById('main-form-singup');
 let formLoginContent = document.getElementById('main-form-login');
+let formEditUserContent = document.getElementById('modal-body-content-user-config');
 let usersArray = []
 
 document.getElementById('form-btn-singup').addEventListener('click', () => {
@@ -343,14 +343,14 @@ document.getElementById('form-btn-singup').addEventListener('click', () => {
 
 document.getElementById('form-btn-login').addEventListener('click', () => {
     getAllUser();
-    let isValidSessionUser = leerCookie("sessionLoginUser") === 'true'
+    //let isValidSessionUser = leerCookie("sessionLoginUser") === 'true'
 
     let email = document.getElementById('form-login-email').value
     let password = document.getElementById('form-login-password').value
 
-    if (isValidSessionUser) {
+    /*if (isValidSessionUser) {
         document.getElementById('modal-body-content').style.setProperty('visibility', 'hidden');
-    }
+    }*/
 
     usersArray.forEach(user =>{
         console.log(user)
@@ -364,10 +364,12 @@ document.getElementById('form-btn-login').addEventListener('click', () => {
 
             document.getElementById('edit-user-modal-id').value = user.id
             document.getElementById('edit-user-modal-name').value = user.name
+            document.getElementById('edit-user-modal-email').value = user.email
             document.getElementById('edit-user-modal-password').value = user.password
             document.getElementById('edit-user-modal-url').value = user.photoUrl
 
             document.getElementById('modal-edit-user-save').addEventListener('click', () => {
+                updateUser(user.name, user.email, user.password, user.photoUrl, user.id)
             })
 
         } else {
@@ -487,9 +489,8 @@ const buildUser = (name, email, password, typeUser, photoUrl, userId) => {
 
 
 function leerCookie(nombre) {
-    let micookie
     let lista = document.cookie.split(";");
-    for (const i in lista) {
+    for (i in lista) {
         let busca = lista[i].search(nombre);
         if (busca > -1) { micookie = lista[i] }
     }
