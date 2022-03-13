@@ -9,7 +9,7 @@
     <script src="js/bootstrap.bundle.js"></script>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-    <title>Document</title>
+    <title>Kodemia Shop</title>
 </head>
 
 <body>
@@ -40,7 +40,7 @@
                             <a class="nav-link" aria-current="page" href="#">Geek</a>
                         </li>
                         <li class="nav-item mx-3">
-                            <a class="nav-link" aria-current="page" href="#"><i
+                            <a class="nav-link" aria-current="page" id="nav-shopping-cart"><i
                                     class="fas fa-shopping-cart icons-menu"></i></a>
                         </li>
                         <li class="nav-item mx-3">
@@ -87,12 +87,12 @@
         <section id="section-products">
             <div class="container">
                 <div id="products-header-title">
-                    <h3 class="section-products-title my-5">Products</h3>
+                    <h3 class="section-title my-5">Products</h3>
                 </div>
                 <div id="products-body">
                     <section id="products-body-shirts">
                         <div id="products-body-shirts-title">
-                            <h3 class="section-products-subtitle my-5">Shirts</h3>
+                            <h3 class="section-subtitle my-5">Shirts</h3>
                         </div>
                         <div id="products-body-carts-shirts">
                             <div class="card" style="width: 18rem;">
@@ -107,7 +107,7 @@
                     </section>
                     <section id="products-body-pants">
                         <div id="products-body-pants-title">
-                            <h3 class="section-products-subtitle my-5">Pants</h3>
+                            <h3 class="section-subtitle my-5">Pants</h3>
                         </div>
                         <div id="products-body-carts-pants">
                             <div class="card" style="width: 18rem;">
@@ -122,7 +122,7 @@
                     </section>
                     <section id="products-body-sweater">
                         <div id="products-body-sweater-title">
-                            <h3 class="section-products-subtitle my-5">Sweater</h3>
+                            <h3 class="section-subtitle my-5">Sweater</h3>
                         </div>
                         <div id="products-body-carts-sweater">
                             <div class="card" style="width: 18rem;">
@@ -140,6 +140,54 @@
         </section>
         <!-- Product section end -->
     </main>
+
+    <!-- Aside shopping cart start -->
+    <aside id="aside-shopping-cart" class="container ms-3 d-flex flex-column">
+        <div id="shopping-cart-header" class="row my-3">
+            <div class="col-10">
+                <h3 class="pb-2" id="shopping-cart-title"> Shopping Cart</h3>
+            </div>
+            <div class="col-2">
+                <h3 class="pb-2" id="shopping-cart-close"> <i class="fas fa-window-close"></i> </h3>
+            </div>
+        </div>
+        <div id="shopping-cart-body">
+            <div class="row">
+                <div class="shopping-cart-item col-12 mx-3">
+                    <div class="row" class="cart-item">
+                        <div id="cart-product-img-item" class="col-4 p-2">
+                            <img src="/assets/img/pants.jpg" alt="">
+                        </div>
+                        <div class="col-7 p-2">
+                            <div class="row">
+                                <div id="cart-product-name-item" class="col-12">
+                                    <p>Nombre</p>
+                                </div>
+                                <div id="cart-product-description-item" class="col-12">
+                                    <p>Descripcion</p>
+                                </div>
+                                <div id="cart-product-price-title-item" class="col-8">
+                                    <p>Precio</p>
+                                </div>
+                                <div id="cart-product-prices-number-item" class="col-4">
+                                    <p>$4000.00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="shopping-cart-footer" class="row my-3 mt-auto">
+            <div class="col-8 pb-2">
+                <h3 id="shopping-cart-total"> Total</h3>
+            </div>
+            <div class="col-4 pb-2">
+                <p id="shopping-cart-total-number"> $4000.00</p>
+            </div>
+        </div>
+    </aside>
+    <!-- Aside shopping cart End -->
 
     <!-- Start Footer-->
     <footer class="mt-5">
@@ -177,7 +225,7 @@
                     <p class="my-2">Hecho con amor para el Kodecamp 2022</p>
                 </div>
                 <div class="col-6 d-flex align-items-end">
-                    <a type="button" class="btn btn-outline-light ms-auto" href="#"> Worker Access <i
+                    <a type="button" class="btn btn-outline-light ms-auto" href="/login.html"> Worker Access <i
                             class="fas fa-heart"></i> </a>
                 </div>
             </div>
@@ -249,6 +297,8 @@
         </div>
     </div>
     <!-- End Modal Login/Register -->
+
+    <script src="js/main.js"></script>
 </body>
 
 </html>
