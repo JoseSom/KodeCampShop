@@ -1,0 +1,69 @@
+:root {
+    --main-principal-color-cian: #00ffff;
+    --main-principal-color-gray: #bdbdbd;
+    --main-secondary-color-blue: #0c9de8;
+    --main-common-color-white: #fff;
+    --main-common-color-black: #212529;
+}
+
+@font-face {
+    font-family: "Poppins-Regular";
+    src: url(/assets/fonts/Poppins/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Poppins-Bold";
+    src: url(/assets/fonts/Poppins/Poppins-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Poppins-Italic";
+    src: url(/assets/fonts/Poppins/Poppins-Italic.ttf);
+}
+
+@font-face {
+    font-family: "Poppins-Light";
+    src: url(/assets/fonts/Poppins/Poppins-Light.ttf);
+}
+
+*{
+    font-family: "Poppins-Regular";
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+}
+
+header{
+    width: 100%;
+    height: 10vh;
+    background-color: var(--main-common-color-black);
+}
+
+
+footer{
+    width: 100%;
+    height: 10vh;
+    background-color: var(--main-common-color-black);
+    color: var(--main-common-color-white);
+}
+
+#main-card-login{
+    overflow: hidden;
+    width: 400px;
+    height: 500px;
+    border: 1px solid var(--main-common-color-black);
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px var(--main-common-color-black);
+}
+
+#main-card-header{
+    width: 100%;
+    height: 10vh;
+    font-size: x-large;
+    color: var(--main-common-color-white);
+    background-color: var(--main-common-color-black);
+}
