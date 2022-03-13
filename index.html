@@ -41,11 +41,13 @@
                         </li>
                         <li class="nav-item mx-3">
                             <a class="nav-link" aria-current="page" id="nav-shopping-cart"><i
-                                    class="fas fa-shopping-cart icons-menu"></i><div id="shopping-cart-count"></div></a>
+                                    class="fas fa-shopping-cart icons-menu"></i>
+                                <div id="shopping-cart-count"></div>
+                            </a>
                         </li>
                         <li class="nav-item mx-3">
                             <a class="nav-link" aria-current="page" href="#" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"><i class="fas fa-user-circle icons-menu"></i></a>
+                                data-bs-target="#main-modal-user"><i class="fas fa-user-circle icons-menu"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -130,7 +132,7 @@
         <div id="shopping-cart-body">
             <div class="row" id="items-shopping-card-display">
 
-                <div class="shopping-cart-item col-12 mx-3">
+                <!-- <div class="shopping-cart-item col-12 mx-3">
                     <div class="row cart-item">
                         <div id="cart-product-img-item" class="col-4 p-2">
                             <img src="/assets/img/pants.jpg" alt="">
@@ -152,7 +154,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
             </div>
         </div>
@@ -161,7 +163,7 @@
                 <h3 id="shopping-cart-total"> Total</h3>
             </div>
             <div class="col-4 pb-2">
-                <p id="shopping-cart-total-number"> $4000.00</p>
+                <p id="shopping-cart-total-number"> $0.00</p>
             </div>
         </div>
     </aside>
@@ -203,8 +205,8 @@
                     <p class="my-2">Hecho con amor para el Kodecamp 2022</p>
                 </div>
                 <div class="col-6 d-flex align-items-end">
-                    <a type="button" class="btn btn-outline-light ms-auto" href="/login.html"> Worker Access <i
-                            class="fas fa-heart"></i> </a>
+                    <a type="button" class="btn btn-outline-light ms-auto" id="index-btn-accces" href="/login.html">
+                        Worker Access <i class="fas fa-heart"></i> </a>
                 </div>
             </div>
         </div>
@@ -212,7 +214,7 @@
     <!-- End Footer-->
 
     <!-- Start Modal Login/Register -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    <div class="modal fade" id="main-modal-user" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
         data-bs-backdrop="static">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -220,54 +222,96 @@
                     <h5 class="modal-title" id="exampleModalLabel">User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
+                <div class="modal-body" id="modal-body-user">
+                    <div class="row" id="modal-body-content">
+
                         <div id="modal-user-login" class="col-6 divider-vertical">
-                            <form>
+                            <form id="main-form-login">
                                 <div class="mb-3">
                                     <div id="modal-user-login-title" class="form-text modal-user-title">Log In</div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp">
-                                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                                    <label for="form-login-email" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="form-login-email"
+                                        aria-describedby="form-login-email-helper">
+                                    <div id="form-login-email-helper" class="form-text">We'll never share your email
+                                        with anyone else.
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1">
+                                    <label for="form-login-password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="form-login-password">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Log in</button>
                             </form>
+                            <button type="submit" class="btn btn-primary" id="form-btn-login">Log in</button>
                         </div>
+
                         <div id="modal-user-singup" class="col-6">
-                            <form>
+                            <form id="main-form-singup">
                                 <div class="mb-3">
                                     <div id="modal-user-login-title" class="form-text modal-user-title">Sing Up</div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputName" class="form-label">Full Name</label>
-                                    <input type="email" class="form-control" id="exampleInputName"
-                                        aria-describedby="emailHelp">
+                                    <label for="form-singup-fullname" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="form-singup-fullname">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp">
-                                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                                    <label for="form-singup-email" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="form-singup-email"
+                                        aria-describedby="form-singup-email-helper">
+                                    <div id="form-singup-email-helper" class="form-text">We'll never share your email
+                                        with anyone else.
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1">
+                                    <label for="form-singup-password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="form-singup-password">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputConfirmPassword" class="form-label">Confirm Password</label>
-                                    <input type="password" class="form-control" id="exampleInputConfirmPassword">
+                                    <label for="form-singup-fullname-confirmpassword" class="form-label">Confirm
+                                        Password</label>
+                                    <input type="password" class="form-control"
+                                        id="form-singup-fullname-confirmpassword">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Sing up</button>
                             </form>
+
+                            <button class="btn btn-primary" id="form-btn-singup">Sing up</button>
+                        </div>
+
+                    </div>
+                    <div class="row" id="modal-body-content-user-config">
+                        <form id="edit-user-form">
+                            <div class="mb-3" hidden>
+                                <input type="text" class="form-control" id="edit-user-modal-id"
+                                    aria-describedby="edit-user-modal-title-helper" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="edit-user-modal-name" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="edit-user-modal-name"
+                                    aria-describedby="edit-user-modal-name-helper">
+                            </div>
+                            <div class="mb-3">
+                                <label for="edit-user-modal-email" class="form-label">email</label>
+                                <input type="email" class="form-control" id="edit-user-modal-email"
+                                    aria-describedby="edit-user-modal-email-helper">
+                            </div>
+                            <div class="mb-3">
+                                <label for="edit-user-modal-password" class="form-label">password</label>
+                                <input type="password" class="form-control" id="edit-user-modal-password"
+                                    aria-describedby="edit-user-modal-password-helper">
+                            </div>
+                            <div class="mb-3">
+                                <label for="edit-user-modal-url" class="form-label">Url</label>
+                                <input type="url" class="form-control" id="edit-user-modal-url"
+                                    aria-describedby="edit-user-modal-url-helper">
+                                <div id="edit-user-modal-url-helper" class="form-text">Image url</div>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" id="modal-edit-user-delete">Delete
+                                User</button>
+                            <button type="button" class="btn btn-primary" id="modal-edit-user-save">Edit
+                                User</button>
                         </div>
                     </div>
                 </div>

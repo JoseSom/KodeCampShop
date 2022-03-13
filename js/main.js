@@ -1,4 +1,7 @@
 'use strict';
+document.cookie = `sessionLoginWorker=${false}`
+let isValidUser = false
+let pruebaVariable = 0
 let arrayShoppingCart
 
 window.onload = function () {
@@ -18,12 +21,14 @@ function initializeComponents() {
     document.getElementById('shopping-cart-close').addEventListener('click', () => {
         hiddenShoppingCart();
     });
+
+    document.getElementById('modal-body-content-user-config').style.setProperty('visibility', 'hidden');
 }
 
 function displayShoppinCart() {
     let emptyProductCart = document.createElement("h1");
     emptyProductCart.id = "message-empty-shopping-cart-body";
-    emptyProductCart.innerText = "Aun no has añadido productos"
+    emptyProductCart.innerText = "You have not added products yet"
 
     let shoppingCart = document.getElementById('aside-shopping-cart')
     let shoppingCartContent = document.getElementById('shopping-cart-body')
@@ -42,14 +47,21 @@ function displayShoppinCart() {
         }
 
         document.getElementById('shopping-cart-body').innerHTML = ""
+        let totalBuy = 0.0
 
         arrayShoppingCart.forEach(product =>
             shoppingCartContent.appendChild(buildCardShoppinCart(product.title, product.description, product.imageUrl, product.price, product.category, product.productId))
         );
 
+        arrayShoppingCart.forEach(product =>
+            totalBuy += parseFloat(product.price)
+        );
+
+        document.getElementById('shopping-cart-total-number').innerText = totalBuy
+
     } else {
-        if(!document.getElementById('message-empty-shopping-cart-body')){
-        shoppingCartContent.appendChild(emptyProductCart);
+        if (!document.getElementById('message-empty-shopping-cart-body')) {
+            shoppingCartContent.appendChild(emptyProductCart);
         }
     }
 }
@@ -123,9 +135,16 @@ const buildCardMain = (title, description, photoUrl, price, category, productId)
 
     cardBtnAdd.addEventListener('click', () => {
         let counter = parseInt(document.getElementById('shopping-cart-count').textContent)
+        let visibilityShoppingCart = window.getComputedStyle(document.getElementById('aside-shopping-cart')).getPropertyValue('visibility')
         counter++
         document.getElementById('shopping-cart-count').innerText = counter
         addProductCart(product);
+
+        if (visibilityShoppingCart == 'visible') {
+            hiddenShoppingCart();
+            displayShoppinCart();
+        }
+
     });
 
     return cardCol;
@@ -230,15 +249,15 @@ const getAllProductsByCategory = () => {
         .then((products) => {
             let emptyProductShirts = document.createElement("h1");
             emptyProductShirts.id = "message-empty-products-shirts";
-            emptyProductShirts.innerText = "Aun no se cuentan con productos"
+            emptyProductShirts.innerText = "No products yet"
 
             let emptyProductsPants = document.createElement("h1");
             emptyProductsPants.id = "message-empty-products-pants";
-            emptyProductsPants.innerText = "Aun no se cuentan con productos"
+            emptyProductsPants.innerText = "No products yet"
 
             let emptyProductsSweater = document.createElement("h1");
             emptyProductsSweater.id = "message-empty-products-sweater";
-            emptyProductsSweater.innerText = "Aun no se cuentan con productos"
+            emptyProductsSweater.innerText = "No products yet"
 
             let shirtsContent = document.getElementById("products-body-carts-shirts");
             let pantsContent = document.getElementById("products-body-carts-pants");
@@ -269,7 +288,6 @@ const getAllProductsByCategory = () => {
 
                     shirtsArray.forEach(product =>
                         shirtsContent.appendChild(buildCardMain(product.title, product.description, product.imageUrl, product.price, product.category, product.productId))
-
                     );
 
                 } else {
@@ -281,6 +299,10 @@ const getAllProductsByCategory = () => {
                     if (messageEmpty) {
                         messageEmpty.style.setProperty('visibility', 'hidden');
                     }
+
+                    pantsArray.forEach(product =>
+                        pantsContent.appendChild(buildCardMain(product.title, product.description, product.imageUrl, product.price, product.category, product.productId))
+                    );
                 } else {
                     pantsContent.appendChild(emptyProductsPants);
                 }
@@ -290,6 +312,9 @@ const getAllProductsByCategory = () => {
                     if (messageEmpty) {
                         messageEmpty.style.setProperty('visibility', 'hidden');
                     }
+                    sweatersArray.forEach(product =>
+                        sweaterContent.appendChild(buildCardMain(product.title, product.description, product.imageUrl, product.price, product.category, product.productId))
+                    );
                 } else {
                     sweaterContent.appendChild(emptyProductsSweater);
                 }
@@ -301,3 +326,276 @@ const getAllProductsByCategory = () => {
             }
         })
 }
+
+/** CRUD USUARIOS */
+let formSingupContent = document.getElementById('main-form-singup');
+let formLoginContent = document.getElementById('main-form-login');
+let usersArray = []
+
+document.getElementById('form-btn-singup').addEventListener('click', () => {
+
+    let name = document.getElementById('form-singup-fullname').value
+    let email = document.getElementById('form-singup-email').value
+    let password = document.getElementById('form-singup-password').value
+
+    createUser(name, email, password);
+});
+
+document.getElementById('form-btn-login').addEventListener('click', () => {
+    getAllUser();
+    let isValidSessionUser = leerCookie("sessionLoginUser") === 'true'
+
+    let email = document.getElementById('form-login-email').value
+    let password = document.getElementById('form-login-password').value
+
+    if (isValidSessionUser) {
+        document.getElementById('modal-body-content').style.setProperty('visibility', 'hidden');
+    }
+
+    usersArray.forEach(user =>{
+        console.log(user)
+        if (user.email === email && user.password === password) {
+            isValidUser = true
+            document.cookie = `sessionLoginUser=${true}`
+
+            document.getElementById('modal-body-content').style.setProperty('visibility', 'hidden');
+            document.getElementById('modal-body-content-user-config').style.setProperty('visibility', 'visible');
+
+
+            document.getElementById('edit-user-modal-id').value = user.id
+            document.getElementById('edit-user-modal-name').value = user.name
+            document.getElementById('edit-user-modal-password').value = user.password
+            document.getElementById('edit-user-modal-url').value = user.photoUrl
+
+            document.getElementById('modal-edit-user-save').addEventListener('click', () => {
+            })
+
+        } else {
+            isValidUser = false
+            document.cookie = `sessionLoginUser=${false}`
+            document.getElementById('modal-body-content').style.setProperty('visibility', 'visible');
+        }
+    });
+
+});
+
+const createUser = (name, email, password) => {
+    const url = "https://kodecamp2022-ed27f-default-rtdb.firebaseio.com/users.json";
+
+    const user = {
+        name: name,
+        email: email,
+        password: password,
+        typeUser: 0,
+        photoUrl: ""
+    };
+
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then((res) => {
+            if (res.ok) {
+                let alertSuccess = document.createElement("div");
+                let iconSuccess = document.createElement("i");
+                let spanSuccess = document.createElement("span");
+
+                spanSuccess.innerText = `You have registered successfully`;
+
+                alertSuccess.classList.add("alert", "alert-success");
+                iconSuccess.classList.add("fas", "fa-check-circle");
+
+                formSingupContent.appendChild(alertSuccess)
+                alertSuccess.appendChild(iconSuccess);
+                alertSuccess.appendChild(spanSuccess);
+
+                setTimeout(function () {
+                    location.reload();
+                }, 2000);
+
+            } else {
+                let alertError = document.createElement("div");
+                let iconError = document.createElement("i");
+                let spanError = document.createElement("span");
+
+                spanError.innerText = `We had problems with your registration, please try again later`;
+
+                alertError.classList.add("alert", "alert-Error");
+                iconError.classList.add("fas", "fa-exclamation-circle");
+
+                formSingupContent.appendChild(alertError)
+                alertError.appendChild(iconError);
+                alertError.appendChild(spanError);
+
+                setTimeout(function () {
+                    location.reload();
+                }, 2000);
+            }
+        })
+};
+
+const getAllUser = () => {
+    const url = "https://kodecamp2022-ed27f-default-rtdb.firebaseio.com/users.json";
+
+    fetch(url)
+        .then((res) => {
+            return res.json()
+        })
+        .then((users) => {
+            if (users != null) {
+                for (const key in users) {
+                    const user = users[key]
+                    if (user.typeUser == 0) {
+                        usersArray.push(buildUser(user.name, user.email, user.password, user.typeUser, user.photoUrl, key))
+                    }
+                }
+            } else {
+                let alertError = document.createElement("div");
+                let iconError = document.createElement("i");
+                let spanError = document.createElement("span");
+
+                spanError.innerText = `User not found`;
+
+                alertError.classList.add("alert", "alert-Error");
+                iconError.classList.add("fas", "fa-exclamation-circle");
+
+                formLoginContent.appendChild(alertError)
+                alertError.appendChild(iconError);
+                alertError.appendChild(spanError);
+
+                setTimeout(function () {
+                    location.reload();
+                }, 2000);
+            }
+        })
+}
+
+const buildUser = (name, email, password, typeUser, photoUrl, userId) => {
+    const objectUser = {
+        name: name,
+        email: email,
+        password: password,
+        typeUser: typeUser,
+        photoUrl: photoUrl,
+        id: userId
+    };
+    return objectUser
+}
+
+
+function leerCookie(nombre) {
+    let micookie
+    let lista = document.cookie.split(";");
+    for (const i in lista) {
+        let busca = lista[i].search(nombre);
+        if (busca > -1) { micookie = lista[i] }
+    }
+    let igual = micookie.indexOf("=");
+    let valor = micookie.substring(igual + 1);
+    return valor;
+}
+
+const updateUser = (name, email, password, photoUrl, userId) => {
+    const url = `https://kodecamp2022-ed27f-default-rtdb.firebaseio.com/users/${userId}.json`;
+
+    const objectUser = {
+        name: name,
+        email: email,
+        password: password,
+        typeUser: 0,
+        photoUrl: photoUrl
+    };
+
+    fetch(url, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(objectUser),
+    }).then((res) => {
+        if (res.ok) {
+            let alertSuccess = document.createElement("div");
+            let iconSuccess = document.createElement("i");
+            let spanSuccess = document.createElement("span");
+
+            spanSuccess.innerText = `The product has been successfully updated`;
+
+            alertSuccess.classList.add("alert", "alert-success");
+            iconSuccess.classList.add("fas", "fa-check-circle");
+
+            formEditUserContent.appendChild(alertSuccess)
+            alertSuccess.appendChild(iconSuccess);
+            alertSuccess.appendChild(spanSuccess);
+
+            setTimeout(function () {
+                location.reload();
+            }, 2000);
+
+        } else {
+            let alertError = document.createElement("div");
+            let iconError = document.createElement("i");
+            let spanError = document.createElement("span");
+
+            spanError.innerText = `The product could not be updated, please try again later`;
+
+            alertError.classList.add("alert", "alert-Error");
+            iconError.classList.add("fas", "fa-exclamation-circle");
+
+            formEditUserContent.appendChild(alertError)
+            alertError.appendChild(iconError);
+            alertError.appendChild(spanError);
+
+            setTimeout(function () {
+                location.reload();
+            }, 2000);
+        }
+    });
+};
+
+const deleteProduct = (productId) => {
+    const url = `https://kodecamp2022-ed27f-default-rtdb.firebaseio.com/products/${productId}.json`;
+
+    fetch(url, {
+        method: "DELETE",
+    }).then((res) => {
+        if (res.ok) {
+            let alertSuccess = document.createElement("div");
+            let iconSuccess = document.createElement("i");
+            let spanSuccess = document.createElement("span");
+
+            spanSuccess.innerText = `The product has been removed successfully`;
+
+            alertSuccess.classList.add("alert", "alert-success");
+            iconSuccess.classList.add("fas", "fa-check-circle");
+
+            formEditUserContent.appendChild(alertSuccess)
+            alertSuccess.appendChild(iconSuccess);
+            alertSuccess.appendChild(spanSuccess);
+
+            setTimeout(function () {
+                location.reload();
+            }, 2000);
+
+        } else {
+            let alertError = document.createElement("div");
+            let iconError = document.createElement("i");
+            let spanError = document.createElement("span");
+
+            spanError.innerText = `The product could not be removed, please try again later`;
+
+            alertError.classList.add("alert", "alert-Error");
+            iconError.classList.add("fas", "fa-exclamation-circle");
+
+            formEditUserContent.appendChild(alertError)
+            alertError.appendChild(iconError);
+            alertError.appendChild(spanError);
+
+            setTimeout(function () {
+                location.reload();
+            }, 2000);
+        }
+    });
+};

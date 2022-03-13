@@ -38,7 +38,7 @@
                             </a>
                             <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">Add Product</a></li>
+                                        data-bs-target="#add-product-modal">Add Product</a></li>
                             </ul>
                         </li>
                         <li class="nav-item me-5">
@@ -63,23 +63,6 @@
                     <h3 class="section-title my-5">Edit Products</h3>
                 </div>
                 <div id="dashboard-products-body-carts" class="row">
-
-                    <!--<div class="alert alert-success" role="alert">
-                        <i class="fas fa-check-circle"></i> <span>A simple success alert—check it out!</span>
-                      </div>
-                      <div class="alert alert-danger" role="alert">
-                        <i class="fas fa-exclamation-circle"></i> A simple danger alert—check it out!
-                      </div>
-                    <div class="col-3">
-                        <div id="products-card-item" class="dashboard-card" style="width: 15rem;">
-                            <img src="/assets/img/shirt.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Web Shirt</h5>
-                                <p class="card-text">Powerful development </p>
-                                <p class="card-text">Price: <span>$5000.00</span> </p>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </section>
             <!-- End Edit Products -->
@@ -99,51 +82,51 @@
     <!-- End Footer-->
 
     <!-- Modal Add Product -->
-    <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="add-product-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                    <h5 class="modal-title">Add Product</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="add-product-form">
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">Name for product</div>
+                            <label for="add-product-modal-title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="add-product-modal-title"
+                                aria-describedby="add-product-modal-helper">
+                            <div id="add-product-modal-helper" class="form-text">Name for product</div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" aria-describedby="descriptionHelp"></textarea>
-                            <div id="descriptionHelp" class="form-text">Descripton for product</div>
+                            <label for="add-product-modal-description" class="form-label">Description</label>
+                            <textarea class="form-control" id="add-product-modal-description" rows="2" aria-describedby="add-product-modal-description-helper"></textarea>
+                            <div id="add-product-modal-description-helper" class="form-text">Descripton for product</div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputNumber1" class="form-label">Price</label>
-                            <input type="number" class="form-control" id="exampleInputNumber1">
+                            <label for="add-product-modal-price" class="form-label">Price</label>
+                            <input type="number" class="form-control" id="add-product-modal-price">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputUrl1" class="form-label">Url</label>
-                            <input type="url" class="form-control" id="exampleInputUrl1"
-                                aria-describedby="urlHelp">
-                            <div id="urlHelp" class="form-text">Image url for product</div>
+                            <label for="add-product-modal-url" class="form-label">Url</label>
+                            <input type="url" class="form-control" id="add-product-modal-url"
+                                aria-describedby="add-product-modal-url-helper">
+                            <div id="add-product-modal-url-helper" class="form-text">Image url for product</div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleSelectCategory1" class="form-label">Category</label>
-                            <select id="exampleSelectCategory1" class="form-select" aria-label="Default select example">
+                            <label for="add-product-modal-category" class="form-label">Category</label>
+                            <select id="add-product-modal-category" class="form-select" aria-label="Default select example">
                                 <option value="1">T-shirts</option>
                                 <option value="2">Pants</option>
                                 <option value="3">Sweater</option>
                             </select>
-                            <div id="urlHelp" class="form-text">Category for product</div>
+                            <div id="add-product-modal-category-helper" class="form-text">Category for product</div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Add product</button>
+                    <button type="button" class="btn btn-primary" id="modal-add-product-save">Add product</button>
                 </div>
             </div>
         </div>
@@ -155,46 +138,49 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="exampleInputEmailEdit" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="exampleInputEmailEdit"
-                                aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">Name for product</div>
+                    <form id="edit-product-form">
+                        <div class="mb-3" hidden>
+                            <input type="text" class="form-control" id="edit-product-modal-id"
+                                aria-describedby="edit-product-modal-title-helper" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" aria-describedby="descriptionHelp"></textarea>
-                            <div id="descriptionHelp" class="form-text">Descripton for product</div>
+                            <label for="edit-product-modal-title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="edit-product-modal-title"
+                                aria-describedby="edit-product-modal-title-helper">
+                            <div id="edit-product-modal-title-helper" class="form-text">Name for product</div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputNumber1" class="form-label">Price</label>
-                            <input type="number" class="form-control" id="exampleInputNumber1">
+                            <label for="edit-product-modal-title-description" class="form-label">Description</label>
+                            <textarea class="form-control" id="edit-product-modal-title-description" rows="2" aria-describedby="edit-product-modal-description-helper"></textarea>
+                            <div id="edit-product-modal-description-helper" class="form-text">Descripton for product</div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputUrl1" class="form-label">Url</label>
-                            <input type="url" class="form-control" id="exampleInputUrl1"
-                                aria-describedby="urlHelp">
-                            <div id="urlHelp" class="form-text">Image url for product</div>
+                            <label for="edit-product-modal-price" class="form-label">Price</label>
+                            <input type="number" class="form-control" id="edit-product-modal-price">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleSelectCategory1" class="form-label">Category</label>
-                            <select id="exampleSelectCategory1" class="form-select" aria-label="Default select example">
+                            <label for="edit-product-modal-url" class="form-label">Url</label>
+                            <input type="url" class="form-control" id="edit-product-modal-url"
+                                aria-describedby="edit-product-modal-url-helper">
+                            <div id="edit-product-modal-url-helper" class="form-text">Image url for product</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-product-modal-category" class="form-label">Category</label>
+                            <select id="edit-product-modal-category" class="form-select" aria-label="Default select example">
                                 <option value="1">T-shirts</option>
                                 <option value="2">Pants</option>
                                 <option value="3">Sweater</option>
                             </select>
-                            <div id="urlHelp" class="form-text">Category for product</div>
+                            <div id="edit-product-modal-category-helper" class="form-text">Category for product</div>
                         </div>
-                        
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Delete Product</button>
+                    <button type="button" class="btn btn-secondary" id="modal-edit-product-delete">Delete Product</button>
                     <button type="button" class="btn btn-primary" id="modal-edit-product-save">Edit product</button>
                 </div>
             </div>
