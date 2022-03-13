@@ -1,0 +1,78 @@
+:root {
+    --main-principal-color-cian: #00ffff;
+    --main-principal-color-gray: #bdbdbd;
+    --main-secondary-color-blue: #0c9de8;
+    --main-common-color-white: #fff;
+    --main-common-color-black: #212529;
+}
+
+@font-face {
+    font-family: "Poppins-Regular";
+    src: url(/assets/fonts/Poppins/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Poppins-Bold";
+    src: url(/assets/fonts/Poppins/Poppins-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Poppins-Italic";
+    src: url(/assets/fonts/Poppins/Poppins-Italic.ttf);
+}
+
+@font-face {
+    font-family: "Poppins-Light";
+    src: url(/assets/fonts/Poppins/Poppins-Light.ttf);
+}
+
+*{
+    font-family: "Poppins-Regular";
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: var(--main-common-color-white);
+}
+
+#text-logo{
+    margin-left: 5px;
+    font-size: revert;
+    font-family: "Poppins-Light";
+}
+
+.icons-menu{
+    color: var(--main-common-color-white);
+    font-size: x-large;
+}
+
+#section-carousel-products-promocion .carousel-inner img{
+    width: 100%;
+    max-height: 50vh;
+    object-fit: cover;
+}
+
+.section-products-title {
+    font-size: xxx-large;
+    font-family: "Poppins-Bold";
+}
+
+.section-products-subtitle{
+    font-size:x-large;
+    font-family: "Poppins-Italic";
+    border-bottom: 2px solid var(--main-common-color-black);
+}
+
+footer{
+    background-color: var(--main-common-color-black);
+    width: auto;
+    height: auto;
+}
+
+#footer-body-info{
+    border-top: 2px solid var(--main-common-color-white);
+    font-family: "Poppins-Light";
+    font-size: 16px;
+    color: var(--main-common-color-white);
+}
