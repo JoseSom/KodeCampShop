@@ -112,7 +112,7 @@ document.getElementById('modal-edit-product-save').addEventListener('click', () 
 document.getElementById('modal-edit-product-delete').addEventListener('click', () => {
 
     let productId = document.getElementById('edit-product-modal-id').value
-
+    console.log(productId)
     deleteProduct(productId)
 
 })
@@ -274,7 +274,7 @@ const updateProduct = (title, description, photoUrl, price, category, productId)
 };
 
 const deleteProduct = (productId) => {
-    const url = `https://kodecamp2022-ed27f-default-rtdb.firebaseio.com/user/${productId}.json`;
+    const url = `https://kodecamp2022-ed27f-default-rtdb.firebaseio.com/products/${productId}.json`;
 
     fetch(url, {
         method: "DELETE",
