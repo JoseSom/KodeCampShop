@@ -352,7 +352,7 @@ document.getElementById('form-btn-login').addEventListener('click', () => {
         document.getElementById('modal-body-content').style.setProperty('visibility', 'hidden');
     }*/
 
-    usersArray.forEach(user =>{
+    usersArray.forEach(user => {
         console.log(user)
         if (user.email === email && user.password === password) {
             isValidUser = true
@@ -369,7 +369,14 @@ document.getElementById('form-btn-login').addEventListener('click', () => {
             document.getElementById('edit-user-modal-url').value = user.photoUrl
 
             document.getElementById('modal-edit-user-save').addEventListener('click', () => {
-                updateUser(user.name, user.email, user.password, user.photoUrl, user.id)
+
+                let id = document.getElementById('edit-user-modal-id').value
+                let name = document.getElementById('edit-user-modal-name').value
+                let email = document.getElementById('edit-user-modal-email').value
+                let password = document.getElementById('edit-user-modal-password').value
+                let url = document.getElementById('edit-user-modal-url').value
+
+                updateUser(name, email,password, url, id)
             })
 
         } else {
@@ -557,7 +564,7 @@ const updateUser = (name, email, password, photoUrl, userId) => {
 };
 
 const deleteProduct = (productId) => {
-    const url = `https://kodecamp2022-ed27f-default-rtdb.firebaseio.com/products/${productId}.json`;
+    const url = `https://kodecamp2022-ed27f-default-rtdb.firebaseio.com/users/${productId}.json`;
 
     fetch(url, {
         method: "DELETE",
