@@ -17,7 +17,7 @@ Proyecto hecho para el kodecamp 2022
 ![App Screenshot](https://github.com/JoseSom/KodeCampShop/blob/main/assets/img/Login.PNG)
 
 #### Para los datos del login que se encuentra en el index
--Esta la parte de la derecha para registrarse y la izquierda para simular un login
+-Esta la parte de la derecha para registrarse y la izquierda para simular un login, no se implemento la validacion de la contraseña solo es simulacion
 ![App Screenshot](https://github.com/JoseSom/KodeCampShop/blob/main/assets/img/user.PNG)
 
 #### Se dejo en limpio los registros para hacer pruebas desde 0
